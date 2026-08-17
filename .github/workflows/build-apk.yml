@@ -57,9 +57,11 @@ jobs:
           sed -i 's/^fullscreen = .*/fullscreen = 0/' buildozer.spec
 
       - name: Build APK
+        env:
+          P4A_ACCEPT_ANDROID_SDK_LICENSE: "1"
         run: |
-          buildozer -v android debug
-
+          yes | buildozer -v android debug
+      
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
